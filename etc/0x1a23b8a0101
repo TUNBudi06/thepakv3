@@ -1,0 +1,6 @@
+down=/storage/emulated/0/Download
+tx=$HOME/thepakv3
+dpak=/storage/emulated/0/Download/pak
+quickbms=$PREFIX/share/quickbms
+quickbms_dir=$PREFIX/share/quickbms
+sd=/storage/emulated/0/Download
