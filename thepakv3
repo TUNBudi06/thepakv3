@@ -1,0 +1,550 @@
+#!/usr/bin/env bash
+
+source etc/0x1a23b8a0101
+source etc/banner #BANNER
+# Banner Add
+echo -e "executing: ${LIGHTGREEN}ThePAK V2 MOD BY TUN_BUDI${NOCOLOR}"
+echo "-----------------------"
+
+
+
+
+#THE FILE AUTO
+if [[ -d "output" ]]
+  then
+    echo ""
+  else
+    echo ""
+    mkdir output
+fi
+cd $down
+if [[ -d "pak" ]]
+  then
+    echo ""
+  else
+    echo ""
+    mkdir /sdcard/download/pak
+fi
+cd $tx
+
+
+
+#CACHE MAKER
+function programcache {
+cd $quickbms
+mv quick* $tx
+cd $tx
+chmod +x quick*
+
+echo -e "
+function bms {
+mv $tx/quick* $quickbms
+cd $tx
+mv $opt $dpak
+}
+
+function tpo {
+if [[ -d "output" ]]
+  then
+    rm -rf output
+    rm cache
+  else
+    mv $down/output $tx
+    rm -rf output
+    rm cache
+fi
+}
+ 
+
+cd $tx
+FILE=quickbms
+  if [ -f "$FILE" ]; then
+      bms
+      tpo
+  else 
+      tpo
+  fi
+
+" >cache
+chmod +x cache
+}
+
+
+function cache {
+echo -e "
+mv $opt $dpak
+cd $tx
+if [[ -d "output" ]]
+  then
+    rm -rf output
+    rm cache
+  else
+    mv $down/output $tx
+    rm -rf output
+    rm cache
+fi
+
+ " >cache
+   chmod +x cache
+}
+
+
+
+
+
+
+mvpakout () {
+  cd $dpak
+  mv $opt $tx
+  cd $tx
+  unpacking
+  rm -rf cache
+   cache
+}
+
+mvpakin () {
+   mv $down/output $tx
+   cd $tx
+   repacking
+}
+
+
+
+
+echo "starting"
+sleep 1
+
+
+
+
+
+
+
+
+
+
+
+#SUB PAKPROGRAM 64BIT
+
+function pakc164 {
+    qemu-i386 $PREFIX/share/quickbms/quickbms_4gb_files -w -r etc/tools.bms $opt output
+    sleep 1
+    bash cache
+    
+}
+function pakc264 {
+    qemu-i386 $PREFIX/share/quickbms/quickbms_4gb_files -w -r -r etc/tools.bms $opt output
+    sleep 1
+    bash cache
+    
+}
+function pakc364 {
+     qemu-i386 $PREFIX/share/quickbms/quickbms_4gb_files -w -r -r -r etc/tools.bms $opt output
+    sleep 1
+    bash cache
+    
+}
+
+#SUB PAKPROGRAM 32BIT
+
+function pakc1 {
+    qemu-i386 $PREFIX/share/quickbms/quickbms -w -r etc/tools.bms $opt output
+    sleep 1
+    bash cache
+    
+}
+function pakc2 {
+    qemu-i386 $PREFIX/share/quickbms/quickbms -w -r -r etc/tools.bms $opt output
+    sleep 1
+    bash cache
+    
+}
+function pakc3 {
+     qemu-i386 $PREFIX/share/quickbms/quickbms -w -r -r -r etc/tools.bms $opt output
+    sleep 1
+    bash cache
+    
+}
+
+#MANUAL PROGRAM
+function pakmanual32bit {
+  echo -e "${RED}PLEASE TYPE GREEN Text CODE IN YOUR COMMAND${NOCOLOR}"
+  echo ""
+  echo -e "${GREEN}qemu-i386 quickbms -w -r etc/tools.bms $opt output${NOCOLOR} for option 1"
+  echo ""
+  echo -e "${GREEN}qemu-i386 quickbms -w -r -r etc/tools.bms $opt output${NOCOLOR} for option 2"
+  echo ""
+  echo -e "${GREEN}qemu-i386 quickbms -w -r -r -r etc/tools.bms $opt output${NOCOLOR} for option 3"
+  echo ""
+  echo -e "${WHITE}THE DIFFERENT 3 OPTION THATS is ${NOCOLOR}"
+  echo -e "the option 1 is compress type ${RED}'ITS CANNOT TO COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}'but this great option"
+  echo -e "the option 2 is compress type ${BLUE}'USE THIS FOR COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}' ${RED}WARNING:${NOCOLOR}This will break algorithme from script/pak file"
+  echo -e "the option 2 is compress type ${BLUE}'USE THIS FOR COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}'${RED}WARNING:${NOCOLOR} This option for when the option 2 is not work but this file has more percent chance to work but the file maybe corrupted if the script not support"
+  echo -e "YOU CAN TEST IT ONE BY ONE NOT IN UNPACK AGAIN BUT IN THE GAME"
+  echo -e "AFTER THATS YOU RUN 'BASH CACHE'FOR REMOVING CACHE"
+  programcache
+  exit
+}
+
+function pakmanual64bit {
+  echo -e "${RED}PLEASE TYPE GREEN Text CODE IN YOUR COMMAND${NOCOLOR}"
+  echo ""
+  echo -e "${GREEN}qemu-i386 quickbms_4gb_files -w -r etc/tools.bms $opt output${NOCOLOR} for option 1"
+  echo ""
+  echo -e "${GREEN}qemu-i386 quickbms_4gb_files -w -r -r etc/tools.bms $opt output${NOCOLOR} for option 2"
+  echo ""
+  echo -e "${GREEN}qemu-i386 quickbms_4gb_files -w -r -r -r etc/tools.bms $opt output${NOCOLOR} for option 3"
+  echo ""
+  echo -e "${WHITE}THE DIFFERENT 3 OPTION THATS is ${NOCOLOR}"
+  echo -e "the option 1 is compress type ${RED}'ITS CANNOT TO COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}'but this great option"
+  echo -e "the option 2 is compress type ${BLUE}'USE THIS FOR COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}' ${RED}WARNING:${NOCOLOR}This will break algorithme from script/pak file"
+  echo -e "the option 2 is compress type ${BLUE}'USE THIS FOR COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}'${RED}WARNING:${NOCOLOR} This option for when the option 2 is not work but this file has more percent chance to work but the file maybe corrupted if the script not support"
+  echo -e "YOU CAN TEST IT ONE BY ONE NOT IN UNPACK AGAIN BUT IN THE GAME"
+  echo -e "AFTER THATS YOU RUN 'BASH CACHE'FOR REMOVING CACHE"
+  programcache
+  exit
+}
+
+
+#MODE 32BIT PAK
+function pak32re {
+echo -e "the option 1 is compress type ${RED}'ITS CANNOT TO COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}'but this great option"
+  echo -e "the option 2 is compress type ${BLUE}'USE THIS FOR COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}' ${RED}WARNING:${NOCOLOR}This will break algorithme from script/pak file"
+  echo -e "the option 2 is compress type ${BLUE}'USE THIS FOR COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}'${RED}WARNING:${NOCOLOR} This option for when the option 2 is not work.but this file has more percent chance to work but the file maybe corrupted if the script not support"
+PS3='Please enter your choice: '
+options=("opt 1" "opt 2" "opt 3" "Quit")
+select type in "${options[@]}"
+do
+    case $type in
+        "opt 1")
+            pakc1
+            break
+            
+            ;;
+        "opt 2")
+            pakc2
+            break
+            
+            ;;
+        "opt 3")
+            pakc3
+            break
+            
+            ;;
+        "Quit")
+            exit
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done 
+}
+
+#REPACK 64 BIT 
+function pak64re {
+echo -e "the option 1 is compress type ${RED}'ITS CANNOT TO COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}'but this great option"
+  echo -e "the option 2 is compress type ${BLUE}'USE THIS FOR COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}' ${RED}WARNING:${NOCOLOR}This will break algorithme from script/pak file"
+  echo -e "the option 2 is compress type ${BLUE}'USE THIS FOR COMPRESS THE FILE (OUTPUT) BIGGER SIZE THAN ORIGINAL(INPUT)${NOCOLOR}'${RED}WARNING:${NOCOLOR} This option for when the option 2 is not work.but this file has more percent chance to work but the file maybe corrupted if the script not support"
+PS3='Please enter your choice: '
+options=("opt 1" "opt 2" "opt 3" "Quit")
+select type in "${options[@]}"
+do
+    case $type in
+        "opt 1")
+            pakc164
+            break
+            
+            ;;
+        "opt 2")
+            pakc264
+            break
+            
+            ;;
+        "opt 3")
+            pakc364
+            break
+            
+            ;;
+        "Quit")
+            exit
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done 
+}
+
+#REPACK V2
+function pubgbitre {
+echo -e "please choice pubg mode bit"
+echo -e "ANDROID 10-11 choose 64bit"
+echo -e "ANDROID 6-9 choose 32bit"
+PS3='PLEASE CHOOSE: '
+options=("32bit" "64bit" "Quit")
+select bit in "${options[@]}"
+do
+    case $bit in
+        "32bit")
+            pak32re
+            break
+            ;;
+        "64bit")
+            pak64re
+            break
+            
+            ;;
+        "Quit")
+            exit
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done 
+}
+
+function pakmanualbit {
+echo -e "please choice pubg mode bit"
+echo -e "ANDROID 10-11 choose 64bit"
+echo -e "ANDROID 6-9 choose 32bit"
+PS3='PLEASE CHOOSE: '
+options=("32bit" "64bit" "Quit")
+select bit in "${options[@]}"
+do
+    case $bit in
+        "32bit")
+            pakmanual32bit
+            
+            ;;
+        "64bit")
+            pakmanual64bit
+            
+            
+            ;;
+        "Quit")
+            exit
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done 
+}
+
+#REPACK  v1
+function repacking {
+echo -e "please choice for repacking file"
+echo -e "be better use manual because is perchentage 10 > auto to make great pak"
+PS3='Please enter your choice: '
+options=("manual" "auto" "Quit")
+select pro in "${options[@]}"
+do
+    case $pro in
+        "manual")
+            pakmanualbit
+            ;;
+        "auto")
+            pubgbitre
+            break
+            
+            ;;
+        "Quit")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#SUB UNPACK 64BIT&32BIT
+
+function pak32un {
+    qemu-i386 $PREFIX/share/quickbms/quickbms etc/tools.bms $opt output
+    rm -rf $down/output
+    mv output $down
+}
+function pak64un {
+    qemu-i386 $PREFIX/share/quickbms/quickbms_4gb_files etc/tools.bms $opt output
+    rm -rf $down/output
+    mv output $down
+}
+
+#UNPACKING PROGRAM
+function unpacking {
+echo -e "please choice pubg mode bit"
+echo -e "ANDROID 10-11 choose 64bit"
+echo -e "ANDROID 6-9 choose 32bit"
+PS3='PLEASE CHOOSE: '
+options=("32bit" "64bit" "Quit")
+select bit in "${options[@]}"
+do
+    case $bit in
+        "32bit")
+            pak32un
+            break
+            ;;
+        "64bit")
+            pak64un
+            break
+            ;;
+        "Quit")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done 
+}
+
+
+
+
+
+
+
+
+
+#HOW TO USE 
+HTU () {
+clear
+source etc/banner
+# Banner Add
+echo -e "executing: ${LIGHTGREEN}ThePAK${NOCOLOR}"
+echo "-----------------------"
+echo -e "${RED}HOW TO USE??${NOCOLOR}"
+echo -e "1.MAKE SOME FOLDER IN DOWNLOAD WITH NAME 'pak'"
+echo -e "2.${RED}BTW IT CANNOT TO EXTRACTION 2 TOGETHER${NOCOLOR}"
+echo -e "${DARKGREY}CAUSE A FILE ERROR OR WILL BREAK IT${NOCOLOR}"
+echo -e "3.THEN RUN THIS SCRIPT AS NORMALLY"
+echo -e "IF UNPACKING THE 'OUTPUT' FOLDER WILL FOUND IN DOWNLOAD FOLDER"
+echo -e "ELIF WHEN REPACKING THE OUTPUT FOLDER WILL BE AUTO DELETE BECAUSE IS NOT USE ANYMORE"
+echo -e "THATS WILL BE REDUCE ERROR OPERATING QUICKBMS"
+echo -e "${RED}NOTE${NOCOLOR}: WHEN FILE IS UNPACKING THE PAK FILE WILL MOVE AUTOMATICLY"
+echo -e "ON ${GREEN}QUICKBMS${NOCOLOR} FOLDER FOR THE PERFOM"
+echo -e "${GREEN}YOU CAN MAKE OWN VERSION WITH CREDIT:${NOCOLOR}"
+echo -e "
+${RED}SOURCE CODE : RULLY BORIEL
+${WHITE}SC GROUP : CFTTEAM
+${LIGHTGREY}MODDING BY
+${GREEN}MOD: BUDI
+${RED}TEAM: ${WHITE}TheUnknownName
+"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#SUB2 PROGRAM
+function unpack {
+cd $dpak
+prompt="Please select a file to unpack:"
+options=( $(find *.pak) )
+
+PS3="$prompt "
+select opt in "${options[@]}" "Quit" ; do 
+    if (( REPLY == 1 + ${#options[@]} )) ; then
+        exit
+
+    elif (( REPLY > 0 && REPLY <= ${#options[@]} )) ; then
+        echo  "You picked $opt which is file $REPLY"
+         mvpakout
+         break
+    else
+        echo "Invalid option. Try another one."
+    fi
+done
+}
+
+function repack {
+prompt="Please select a file to repack:"
+options=( $(find *.pak) )
+
+PS3="$prompt "
+select opt in "${options[@]}" "Quit" ; do 
+    if (( REPLY == 1 + ${#options[@]} )) ; then
+        exit
+
+    elif (( REPLY > 0 && REPLY <= ${#options[@]} )) ; then
+        echo  "You picked $opt which is file $REPLY"
+         mvpakin
+         break
+    else
+        echo "Invalid option. Try another one."
+    fi
+done
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#HEAD PROGRAM
+PS3='Please enter your choice: '
+options=("Unpack" "Repack" "put file back" "HOW TO USE" "Quit")
+select dadi in "${options[@]}"
+do
+    case $dadi in
+        "Unpack")
+            unpack
+            ;;
+        "Repack")
+            repack
+            
+            ;;
+        "HOW TO USE")
+            HTU
+            
+            ;;
+        "Quit")
+            break
+            ;;
+        "put file back")
+            bash cache
+            exit
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done 

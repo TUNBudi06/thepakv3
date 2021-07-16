@@ -1,0 +1,200 @@
+#!/bin/bash
+# Installer for ThePAK
+
+source etc/banner
+# Banner Add
+echo -e "executing: ${LIGHTGREEN}SETUP${NOCOLOR}"
+echo "-----------------------"
+# Setup directory for Requirements
+source etc/0x1a23b8a0101
+
+function redirect {
+ echo -e "${LIGHTGREEN}STARTING THEPAK${NOCOLOR}"
+ echo -ne '#####                     (33%)\r'
+ sleep 1
+ echo -ne '#############             (66%)\r'
+ sleep 1
+ echo -ne '#######################   (100%)\r'
+ echo -ne '\n'
+ bash thepakv3
+}
+
+function TI {
+cd $tx
+FILE=theinstaller
+  if [ -f "$FILE" ]; then
+      rm -rf theinstaller
+      redirect
+  else 
+      redirect
+      
+  fi
+}
+
+function expir {
+dax="$(date +%d%m)"
+if [ $dax == "1008" ]
+   then
+      cd $tx
+      rm -rf etc/0x1a23b8a0101
+      echo "THIS SCRIPT HAS BEEN EXPIRED"
+      echo "GO OUT AND CHECK CHANNEL THEUNKNOWNNAME"
+      echo "OR CHAT OWNER AT WHATSAPP 087752548745"
+      rm -rf etc/tools.bms
+      rm -rf etc/banner
+      rm -rf $tx/thepak*
+   else
+     TI
+fi
+}
+
+function quickbms_check {
+  echo -e "${YELLOW}Checking required program..${NOCOLOR}"
+  FILE=$quickbms_dir/quickbms
+  if [ -f "$FILE" ]; then
+      echo -e "${LIGHTGREEN}Program has been installed.${NOCOLOR}"
+      expir
+  else 
+      bms_checker2
+  fi
+}
+
+function bms_checker2 {
+  echo -e "${YELLOW}Checking required program ini another folder..${NOCOLOR}"
+  
+cd $tx
+FILE=quickbms
+  if [ -f "$FILE" ]; then
+      Bash cache
+      quickbms_check
+  else
+      echo -e "${RED}PROGRAM NOT FOUND.${NOCOLOR}"
+      quickbms_install
+  fi
+}
+
+function nextinstaller {
+echo "Please wait .."
+echo "unpacking data"
+cd $tx
+unzip -qq quickbms_linux.zip
+sleep 1
+rm -rf $PREFIX/share/quickbms
+sleep 1
+echo "improving"
+mkdir $PREFIX/share/quickbms
+sleep 1
+chmod +x quickbms_4gb_files
+yes | cp -rf quickbms_4gb_files $quickbms_dir
+chmod +x quickbms
+yes | cp -rf quickbms $quickbms_dir
+chmod +x etc/tools.bms thepakv3
+sleep 1
+rm -rf quickbms*
+echo done
+sleep 1
+quickbms_check
+}
+
+function testbmsm {
+echo "checking file .Zip"
+FILE=$sd/quickbms_linux.zip
+  if [ -f "$FILE" ]; then
+      echo " file founded"
+      mv $sd/quickbms_linux.zip $tx
+      nextinstaller
+  else 
+      clear
+      echo -e "${RED}THE FILE IS NOT FOUND${NOCOLOR}"
+      quickbms_manual
+  fi
+}
+
+function testbmsauto {
+echo "checking downloaded program"
+sleep 1
+FILE=quickbms_linux.zip
+  if [ -f "$FILE" ]; then
+      echo " file founded"
+      nextinstaller
+  else 
+      clear
+      echo -e "${RED}THE FILE IS NOT FOUND${NOCOLOR}"
+      quickbms_install
+  fi
+}
+
+function quickbms_manual {
+  clear
+  echo ""
+  echo "http://aluigi.altervista.org/papers/quickbms_linux.zip"
+  echo -e "${RED} first download file from link above ${NOCOLOR}"
+  echo -e "${GREEN}after download that paste the file in download folder ${NOCOLOR}"
+cd $sd
+prompt="Please select a file quick bms :"
+options=( $(find *.zip) )
+
+PS3="$prompt "
+select bms in "${options[@]}" "Quit" ; do 
+    if (( REPLY == 1 + ${#options[@]} )) ; then
+        quickbms_install
+
+    elif (( REPLY > 0 && REPLY <= ${#options[@]} )) ; then
+        echo  "You picked $bms which is file quickbms file"
+         testbmsm
+    else
+        echo "Invalid option. Try another one."
+    fi
+done
+cd $tx
+}
+
+function quickbms_auto {
+echo "AUTO INSTALLATION METHOD USED"
+echo "Please WAIT"
+echo "this process depends on your signal"
+echo " if it take to long please press CTRL + C"
+sleep 2
+echo "starting"
+cd $tx
+wget http://aluigi.altervista.org/papers/quickbms_linux.zip
+echo " checking..."
+testbmsauto
+}
+
+function quickbms_install {
+echo -e "CHOOSE PROGRAM INSTALLER METHOD"
+echo "MAKE SURE YOU HAVE GREAT CONNECTION WHEN CHOOSE AUTO"
+echo "because the process Will be taking longer"
+PS3='Please enter your CHOOSE: '
+options=("Auto" "Manual")
+select pategk in "${options[@]}"
+do
+    case $pategk in
+        "Auto")
+            quickbms_auto
+            ;;
+        "Manual")
+            quickbms_manual
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done 
+}
+#Checking Required Pakcages
+echo -e "${YELLOW}Checking Required packages${NOCOLOR}"
+
+packages=("wget" "unzip" "curl" "x11-repo" "qemu-system-i386" "qemu-user-i386" "neofetch")
+
+for pkg in ${packages[@]}; do
+
+    is_pkg_installed=$(dpkg-query -W --showformat='${Status}\n' ${pkg} | grep "install ok installed")
+
+    if [ "${is_pkg_installed}" == "install ok installed" ]; then
+        echo -e ${GREEN}${pkg}${NOCOLOR} is installed.
+    else [ "" = "${is_pkg_installed}" ];
+     echo -e "${RED}No ${pkg}. Setting up ${pkg}.${NOCOLOR}" 
+    pkg install ${pkg} -y
+    fi
+done
+quickbms_check

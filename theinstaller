@@ -1,0 +1,8 @@
+apt upgrade
+apt update 
+pkg upgrade
+pkg update
+
+chmod +x setup
+chmod +x etc/tools.bms thepakv2
+bash setup
