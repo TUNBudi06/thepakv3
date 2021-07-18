@@ -48,31 +48,6 @@ if [ $dax == "1008" ]
 fi
 }
 
-function quickbms_check {
-  echo -e "${YELLOW}Checking required program..${NOCOLOR}"
-  FILE=$quickbms_dir/quickbms
-  if [ -f "$FILE" ]; then
-      echo -e "${LIGHTGREEN}Program has been installed.${NOCOLOR}"
-      expir
-  else 
-      bms_checker2
-  fi
-}
-
-function bms_checker2 {
-  echo -e "${YELLOW}Checking required program ini another folder..${NOCOLOR}"
-  
-cd $tx
-FILE=quickbms
-  if [ -f "$FILE" ]; then
-      Bash cache
-      quickbms_check
-  else
-      echo -e "${RED}PROGRAM NOT FOUND.${NOCOLOR}"
-      quickbms_install
-  fi
-}
-
 function nextinstaller {
 echo "Please wait .."
 echo "unpacking data"
@@ -181,6 +156,32 @@ do
     esac
 done 
 }
+
+function bms_checker2 {
+  echo -e "${YELLOW}Checking required program ini another folder..${NOCOLOR}"
+  
+cd $tx
+FILE=quickbms
+  if [ -f "$FILE" ]; then
+      Bash cache
+      expir
+  else
+      echo -e "${RED}PROGRAM NOT FOUND.${NOCOLOR}"
+      quickbms_install
+  fi
+}
+
+function quickbms_check {
+  echo -e "${YELLOW}Checking required program..${NOCOLOR}"
+  FILE=$quickbms_dir/quickbms
+  if [ -f "$FILE" ]; then
+      echo -e "${LIGHTGREEN}Program has been installed.${NOCOLOR}"
+      expir
+  else 
+      bms_checker2
+  fi
+}
+
 #Checking Required Pakcages
 echo -e "${YELLOW}Checking Required packages${NOCOLOR}"
 
